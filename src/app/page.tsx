@@ -92,7 +92,7 @@ export default function Home() {
                 fontWeight: 800,
                 lineHeight: 1.08,
                 margin: '0 0 18px',
-                letterSpacing: '-1.5px',
+                letterSpacing: '1.5px',
                 color: '#fff',
               }}>
                 Kuljetus tilattu,<br />tavarat perillä.
