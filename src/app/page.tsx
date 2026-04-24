@@ -50,7 +50,7 @@ export default function Home() {
                 Kirjaudu
               </Link>
               <Link href="/tilaa" style={{
-                background: '#fff',
+                background: 'rgba(255,255,255,0.75)',
                 color: '#1d4ed8',
                 padding: '8px 18px',
                 borderRadius: '8px',
@@ -77,8 +77,6 @@ export default function Home() {
               <div style={{
                 display: 'inline-flex',
                 alignItems: 'center',
-                background: 'rgba(255,255,255,0.12)',
-                borderRadius: '999px',
                 padding: '6px 18px',
                 fontSize: '13px',
                 fontWeight: 500,
@@ -113,14 +111,14 @@ export default function Home() {
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center' }}>
                 <Link href="/tilaa" style={{
                   display: 'inline-block',
-                  background: '#fff',
+                  background: 'rgba(255,255,255,0.75)',
                   color: '#1d4ed8',
                   fontWeight: 700,
                   fontSize: '17px',
                   padding: '14px 42px',
                   borderRadius: '12px',
                   textDecoration: 'none',
-                  boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.25)',
                 }}>
                   Tilaa kuljetus →
                 </Link>
