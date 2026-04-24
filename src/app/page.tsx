@@ -2,110 +2,211 @@ import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div style={{
+      height: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      overflow: 'hidden',
+      fontFamily: 'system-ui, -apple-system, sans-serif',
+    }}>
 
-      {/* Hero */}
-      <section className="bg-linear-to-br from-blue-900 via-blue-800 to-blue-700 text-white">
-        <div className="max-w-5xl mx-auto px-6 py-24 sm:py-32 text-center">
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-tight mb-6">
-            Nopea ja luotettava<br className="hidden sm:block" /> kuljetus
-          </h1>
-          <p className="text-lg sm:text-xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Tilaa kuljetus helposti — saat hinta-arvion reaaliajassa ja maksat turvallisesti verkossa.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/tilaa"
-              className="bg-white text-blue-800 font-semibold px-8 py-4 rounded-xl text-base hover:bg-blue-50 transition-colors shadow-lg"
-            >
-              Tilaa kuljetus →
-            </Link>
-            <Link
-              href="/liity"
-              className="border border-white/40 text-white font-semibold px-8 py-4 rounded-xl text-base hover:bg-white/10 transition-colors"
-            >
-              Oletko kuljettaja? Liity alustalle
-            </Link>
+      {/* Hero — täyttää tilan footerin yläpuolella */}
+      <section style={{ flex: 1, position: 'relative', display: 'flex', flexDirection: 'column', overflow: 'hidden' }}>
+
+        {/* Taustakuva */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          backgroundImage: 'url(https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=1920&q=80)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }} />
+        <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.62)' }} />
+
+        {/* Sisältökolumni */}
+        <div style={{ position: 'relative', zIndex: 2, display: 'flex', flexDirection: 'column', height: '100%' }}>
+
+          {/* Navigaatio */}
+          <nav style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            padding: '0 32px',
+            height: '64px',
+            flexShrink: 0,
+          }}>
+            <span style={{ fontWeight: 700, fontSize: '18px', color: '#fff', letterSpacing: '-0.3px' }}>
+              Kuljetusalusta
+            </span>
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              <Link href="/kirjaudu" style={{
+                color: '#fff',
+                padding: '8px 18px',
+                borderRadius: '8px',
+                border: '1px solid rgba(255,255,255,0.3)',
+                textDecoration: 'none',
+                fontSize: '14px',
+                fontWeight: 500,
+              }}>
+                Kirjaudu
+              </Link>
+              <Link href="/tilaa" style={{
+                background: '#fff',
+                color: '#1d4ed8',
+                padding: '8px 18px',
+                borderRadius: '8px',
+                textDecoration: 'none',
+                fontSize: '14px',
+                fontWeight: 700,
+              }}>
+                Tilaa kuljetus
+              </Link>
+            </div>
+          </nav>
+
+          {/* Hero-teksti — kasvaa täyttämään tilan */}
+          <div style={{
+            flex: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            textAlign: 'center',
+            padding: '0 24px',
+            color: '#fff',
+          }}>
+            <div style={{ maxWidth: '700px' }}>
+              <div style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                background: 'rgba(255,255,255,0.12)',
+                borderRadius: '999px',
+                padding: '6px 18px',
+                fontSize: '13px',
+                fontWeight: 500,
+                marginBottom: '24px',
+                backdropFilter: 'blur(8px)',
+                color: '#e2e8f0',
+              }}>
+                Suomen nopein kuljetuspalvelu
+              </div>
+
+              <h1 style={{
+                fontSize: 'clamp(34px, 5.5vw, 66px)',
+                fontWeight: 800,
+                lineHeight: 1.08,
+                margin: '0 0 18px',
+                letterSpacing: '-1.5px',
+                color: '#fff',
+              }}>
+                Kuljetus tilattu,<br />tavarat perillä.
+              </h1>
+
+              <p style={{
+                fontSize: 'clamp(14px, 1.8vw, 18px)',
+                color: '#cbd5e1',
+                maxWidth: '480px',
+                margin: '0 auto 28px',
+                lineHeight: 1.65,
+              }}>
+                Syötä osoitteet, saat hinnan sekunnissa. Maksa verkossa, kuljettaja hoitaa loput.
+              </p>
+
+              <Link href="/tilaa" style={{
+                display: 'inline-block',
+                background: '#fff',
+                color: '#1d4ed8',
+                fontWeight: 700,
+                fontSize: '17px',
+                padding: '14px 42px',
+                borderRadius: '12px',
+                textDecoration: 'none',
+                boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
+              }}>
+                Tilaa kuljetus →
+              </Link>
+
+              <p style={{ marginTop: '14px', fontSize: '13px', color: '#94a3b8' }}>
+                Ei rekisteröitymistä &bull; Hinta-arvio heti &bull; Turvallinen maksu
+              </p>
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* Miten se toimii */}
-      <section className="py-20 px-6 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-12">
-            Miten se toimii?
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
+          {/* Tilastot */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'center',
+            gap: '56px',
+            padding: '16px 24px',
+            color: '#fff',
+            textAlign: 'center',
+            flexShrink: 0,
+          }}>
             {[
-              { icon: '📋', step: '1', title: 'Täytä tilaus', desc: 'Syötä nouto- ja toimitusosoite sekä tavaratiedot lomakkeelle.' },
-              { icon: '💰', step: '2', title: 'Saat hinta-arvion', desc: 'Hinta lasketaan automaattisesti osoitteiden ja tavaroiden perusteella.' },
-              { icon: '🚚', step: '3', title: 'Kuljetus hoidetaan', desc: 'Kuljettaja noutaa tavarat sovittuna aikana ja toimittaa perille.' },
-            ].map(({ icon, step, title, desc }) => (
-              <div key={step} className="relative bg-white rounded-2xl border border-gray-200 p-8 text-center shadow-sm">
-                <span className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-blue-600 text-white text-sm font-bold rounded-full flex items-center justify-center shadow">
-                  {step}
-                </span>
-                <div className="text-4xl mb-4 mt-2">{icon}</div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+              { value: '500+', label: 'Toimitusta' },
+              { value: '4.9★', label: 'Arvosana' },
+              { value: '< 2h', label: 'Vastausaika' },
+            ].map(({ value, label }) => (
+              <div key={label}>
+                <div style={{ fontSize: '22px', fontWeight: 700, lineHeight: 1 }}>{value}</div>
+                <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  {label}
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
 
-      {/* Miksi Kuljetusalusta */}
-      <section className="py-20 px-6 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 text-center mb-12">
-            Miksi Kuljetusalusta?
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { icon: '⚡', title: 'Nopea tilaus', desc: 'Tilaus onnistuu minuuteissa — ei puhelinsoittoja, ei odottelua.' },
-              { icon: '🔒', title: 'Turvallinen maksu', desc: 'Maksat verkossa Strepen kautta. Korttitieto ei tallennu meille.' },
-              { icon: '📍', title: 'Reaaliaikainen seuranta', desc: 'Seuraa kuljetuksen etenemistä reaaliajassa. (Tulossa)' },
-              { icon: '⭐', title: 'Luotettavat kuljettajat', desc: 'Kaikki kuljettajat ovat tarkistettuja ammattilaisia.' },
-            ].map(({ icon, title, desc }) => (
-              <div key={title} className="bg-gray-50 rounded-2xl p-6 border border-gray-100">
-                <div className="text-3xl mb-3">{icon}</div>
-                <h3 className="text-base font-semibold text-gray-900 mb-1">{title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
-              </div>
-            ))}
+          {/* Features-palkki hero:n alareunassa */}
+          <div style={{
+            background: 'rgba(0,0,0,0.4)',
+            backdropFilter: 'blur(4px)',
+            padding: '20px 24px',
+            flexShrink: 0,
+          }}>
+            <div style={{
+              maxWidth: '880px',
+              margin: '0 auto',
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '16px',
+              textAlign: 'center',
+              color: '#fff',
+            }}>
+              {[
+                { title: 'Täytä tilaus', sub: '2 min' },
+                { title: 'Saat hinnan', sub: 'heti' },
+                { title: 'Vahvista & maksa', sub: 'turvallisesti' },
+                { title: 'Kuljetus hoidetaan', sub: 'sovittuna aikana' },
+              ].map(({ title, sub }) => (
+                <div key={title} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
+                  <span style={{ fontWeight: 600, fontSize: '13px' }}>{title}</span>
+                  <span style={{ fontSize: '11px', color: '#94a3b8' }}>{sub}</span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
 
-      {/* CTA */}
-      <section className="py-20 px-6 bg-blue-600">
-        <div className="max-w-xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
-            Valmis tilaamaan?
-          </h2>
-          <p className="text-blue-100 mb-8 text-base">
-            Tilaa kuljetus nyt ja saa hinta-arvio heti.
-          </p>
-          <Link
-            href="/tilaa"
-            className="inline-block bg-white text-blue-700 font-bold px-10 py-4 rounded-xl text-base hover:bg-blue-50 transition-colors shadow-lg"
-          >
-            Tilaa kuljetus nyt
-          </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-gray-400 py-8 px-6">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
-          <p>© 2026 Kuljetusalusta</p>
-          <nav className="flex gap-6">
-            <Link href="/tilaa" className="hover:text-white transition-colors">Tilaa kuljetus</Link>
-            <Link href="/kirjaudu" className="hover:text-white transition-colors">Kirjaudu</Link>
-            <Link href="/yhteystiedot" className="hover:text-white transition-colors">Ota yhteyttä</Link>
-          </nav>
-        </div>
+      <footer style={{
+        background: '#0f172a',
+        color: '#64748b',
+        padding: '12px 24px',
+        fontSize: '13px',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+        alignItems: 'center',
+        gap: '6px 12px',
+        flexShrink: 0,
+      }}>
+        <span>© 2026 Kuljetusalusta</span>
+        <span>|</span>
+        <Link href="/tilaa" style={{ color: '#64748b', textDecoration: 'none' }}>Tilaa kuljetus</Link>
+        <span>|</span>
+        <Link href="/kirjaudu" style={{ color: '#64748b', textDecoration: 'none' }}>Kirjaudu</Link>
+        <span>|</span>
+        <a href="mailto:info@mediasata.fi" style={{ color: '#64748b', textDecoration: 'none' }}>info@mediasata.fi</a>
       </footer>
 
     </div>
