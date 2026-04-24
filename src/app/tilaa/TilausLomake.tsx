@@ -171,24 +171,23 @@ export default function TilausLomake({ rules }: Props) {
         .t-submit {
           width: 100%;
           height: 56px;
-          background: linear-gradient(135deg, #2563eb, #1d4ed8);
-          color: #fff;
-          border: none;
+          background: transparent;
+          color: #0f172a;
+          border: 1.5px solid #0f172a;
           border-radius: 14px;
           font-size: 16px;
           font-weight: 600;
           cursor: pointer;
-          transition: transform 0.15s, box-shadow 0.15s;
+          transition: background 0.15s, color 0.15s;
           font-family: inherit;
           letter-spacing: -0.2px;
         }
         .t-submit:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 8px 24px rgba(37,99,235,0.4);
+          background: #0f172a;
+          color: #fff;
         }
         .t-submit:active {
-          transform: translateY(0);
-          box-shadow: none;
+          background: #1e293b;
         }
         .t-form-grid {
           display: grid;
@@ -252,7 +251,7 @@ export default function TilausLomake({ rules }: Props) {
             left: 0;
             right: 0;
             padding: 16px;
-            background: #f8fafc;
+            background: #fff;
             border-top: 1px solid #e2e8f0;
             z-index: 40;
             margin: 0;

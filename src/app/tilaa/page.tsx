@@ -17,7 +17,7 @@ export default async function TilaaPage({
     .order('created_at', { ascending: true });
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f8fafc', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+    <div style={{ minHeight: '100vh', background: '#fff', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
 
       {/* Navigaatio */}
       <nav style={{

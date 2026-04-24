@@ -34,7 +34,7 @@ export default async function LiityPage({
   const { error } = await searchParams;
 
   return (
-    <div style={{ minHeight: '100vh', background: '#f8fafc', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+    <div style={{ minHeight: '100vh', background: '#fff', fontFamily: 'system-ui, -apple-system, sans-serif' }}>
       <style>{`
         .l-input {
           width: 100%;
@@ -56,23 +56,22 @@ export default async function LiityPage({
         .l-submit {
           width: 100%;
           height: 56px;
-          background: linear-gradient(135deg, #2563eb, #1d4ed8);
-          color: #fff;
-          border: none;
+          background: transparent;
+          color: #0f172a;
+          border: 1.5px solid #0f172a;
           border-radius: 14px;
           font-size: 16px;
           font-weight: 600;
           cursor: pointer;
-          transition: transform 0.15s, box-shadow 0.15s;
+          transition: background 0.15s, color 0.15s;
           font-family: inherit;
         }
         .l-submit:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 8px 24px rgba(37,99,235,0.4);
+          background: #0f172a;
+          color: #fff;
         }
         .l-submit:active {
-          transform: translateY(0);
-          box-shadow: none;
+          background: #1e293b;
         }
         .l-row-2 {
           display: grid;
