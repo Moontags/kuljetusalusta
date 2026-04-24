@@ -145,30 +145,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Tilastot */}
-          <div style={{
-            display: 'flex',
-            justifyContent: 'center',
-            gap: '56px',
-            padding: '16px 24px',
-            color: '#fff',
-            textAlign: 'center',
-            flexShrink: 0,
-          }}>
-            {[
-              { value: '500+', label: 'Toimitusta' },
-              { value: '4.9★', label: 'Arvosana' },
-              { value: '< 2h', label: 'Vastausaika' },
-            ].map(({ value, label }) => (
-              <div key={label}>
-                <div style={{ fontSize: '22px', fontWeight: 700, lineHeight: 1 }}>{value}</div>
-                <div style={{ fontSize: '11px', color: '#94a3b8', marginTop: '4px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  {label}
-                </div>
-              </div>
-            ))}
-          </div>
-
           {/* Features-palkki hero:n alareunassa */}
           <div style={{
             background: 'rgba(0,0,0,0.4)',
