@@ -110,19 +110,34 @@ export default function Home() {
                 Syötä osoitteet, saat hinnan sekunnissa. Maksa verkossa, kuljettaja hoitaa loput.
               </p>
 
-              <Link href="/tilaa" style={{
-                display: 'inline-block',
-                background: '#fff',
-                color: '#1d4ed8',
-                fontWeight: 700,
-                fontSize: '17px',
-                padding: '14px 42px',
-                borderRadius: '12px',
-                textDecoration: 'none',
-                boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
-              }}>
-                Tilaa kuljetus →
-              </Link>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px', justifyContent: 'center' }}>
+                <Link href="/tilaa" style={{
+                  display: 'inline-block',
+                  background: '#fff',
+                  color: '#1d4ed8',
+                  fontWeight: 700,
+                  fontSize: '17px',
+                  padding: '14px 42px',
+                  borderRadius: '12px',
+                  textDecoration: 'none',
+                  boxShadow: '0 8px 32px rgba(0,0,0,0.35)',
+                }}>
+                  Tilaa kuljetus →
+                </Link>
+                <Link href="/liity" style={{
+                  display: 'inline-block',
+                  background: 'transparent',
+                  color: '#fff',
+                  fontWeight: 600,
+                  fontSize: '17px',
+                  padding: '14px 42px',
+                  borderRadius: '12px',
+                  textDecoration: 'none',
+                  border: '2px solid rgba(255,255,255,0.7)',
+                }}>
+                  Liity kuljettajaksi
+                </Link>
+              </div>
 
               <p style={{ marginTop: '14px', fontSize: '13px', color: '#94a3b8' }}>
                 Ei rekisteröitymistä &bull; Hinta-arvio heti &bull; Turvallinen maksu
