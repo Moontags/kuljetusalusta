@@ -23,12 +23,45 @@ const sectionCls = 'bg-white rounded-2xl border border-gray-200 p-6';
 export default function TilausLomake({ rules }: Props) {
   const rule = rules[0] ?? null;
 
+  const [origin, setOrigin] = useState('');
+  const [destination, setDestination] = useState('');
+  const [distanceLoading, setDistanceLoading] = useState(false);
+  const [distanceError, setDistanceError] = useState<string | null>(null);
+  const [distanceAuto, setDistanceAuto] = useState(false);
+
   const [distance, setDistance] = useState('');
   const [durationH, setDurationH] = useState('');
   const [needsLift, setNeedsLift] = useState(false);
   const [isHazardous, setIsHazardous] = useState(false);
   const [helpers, setHelpers] = useState('0');
   const [scheduledAt, setScheduledAt] = useState('');
+
+  async function calculateDistance(o: string, d: string) {
+    if (!o.trim() || !d.trim()) return;
+    setDistanceLoading(true);
+    setDistanceError(null);
+    try {
+      const res = await fetch('/api/distance', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ origin: o, destination: d }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setDistanceError(data.error ?? 'Etäisyyden laskenta epäonnistui. Syötä km manuaalisesti.');
+        setDistanceAuto(false);
+      } else {
+        setDistance(String(data.distance_km));
+        setDistanceAuto(true);
+        setDistanceError(null);
+      }
+    } catch {
+      setDistanceError('Etäisyyden laskenta epäonnistui. Syötä km manuaalisesti.');
+      setDistanceAuto(false);
+    } finally {
+      setDistanceLoading(false);
+    }
+  }
 
   const price = useMemo(() => {
     if (!rule) return null;
@@ -89,25 +122,54 @@ export default function TilausLomake({ rules }: Props) {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="sm:col-span-2">
               <label className={labelCls}>Lähtöosoite *</label>
-              <input name="pickup_address" type="text" required className={inputCls} placeholder="Mannerheimintie 1, Helsinki" />
+              <input
+                name="pickup_address"
+                type="text"
+                required
+                className={inputCls}
+                placeholder="Mannerheimintie 1, Helsinki"
+                value={origin}
+                onChange={e => setOrigin(e.target.value)}
+                onBlur={() => calculateDistance(origin, destination)}
+              />
             </div>
             <div className="sm:col-span-2">
               <label className={labelCls}>Kohdeosoite *</label>
-              <input name="delivery_address" type="text" required className={inputCls} placeholder="Aleksanterinkatu 5, Helsinki" />
-            </div>
-            <div>
-              <label className={labelCls}>Arvioitu etäisyys (km) *</label>
               <input
-                name="distance_km"
-                type="number"
-                min="0"
-                step="0.1"
+                name="delivery_address"
+                type="text"
                 required
                 className={inputCls}
-                placeholder="25"
-                value={distance}
-                onChange={e => setDistance(e.target.value)}
+                placeholder="Aleksanterinkatu 5, Helsinki"
+                value={destination}
+                onChange={e => setDestination(e.target.value)}
+                onBlur={() => calculateDistance(origin, destination)}
               />
+            </div>
+            <div>
+              <label className={labelCls}>Etäisyys (km) *</label>
+              <div className="relative">
+                <input
+                  name="distance_km"
+                  type="number"
+                  min="0"
+                  step="0.1"
+                  required
+                  className={`${inputCls} ${distanceLoading ? 'text-transparent' : ''}`}
+                  placeholder="25"
+                  value={distance}
+                  onChange={e => { setDistance(e.target.value); setDistanceAuto(false); }}
+                  disabled={distanceLoading}
+                />
+                {distanceLoading && (
+                  <span className="pointer-events-none absolute inset-y-0 left-3 flex items-center text-sm text-gray-400">
+                    Lasketaan etäisyyttä...
+                  </span>
+                )}
+              </div>
+              {distanceError && (
+                <p className="mt-1 text-xs text-amber-600">{distanceError}</p>
+              )}
             </div>
             <div>
               <label className={labelCls}>Arvioitu kesto (h)</label>
